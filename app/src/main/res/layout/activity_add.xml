@@ -66,6 +66,7 @@
         android:id="@+id/lecture_scheduled_count_input"
         android:hint="Till Date"
         android:padding="5dp"
+        android:singleLine="true"
         android:layout_below="@id/instructor_name_input"
         android:layout_alignLeft="@id/instructor_name_input"
         android:layout_toRightOf="@id/lecture_scheduled_count_label"
@@ -89,6 +90,7 @@
         android:hint="Till Date"
         android:id="@+id/lecture_attended_count_input"
         android:padding="5dp"
+        android:singleLine="true"
         android:layout_below="@id/lecture_scheduled_count_input"
         android:layout_alignLeft="@id/lecture_scheduled_count_input"
         android:layout_toRightOf="@id/lecture_attended_count_label"
@@ -200,6 +202,8 @@
     <EditText
         android:id="@+id/event_time_input_hrs"
         android:textSize="15sp"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
         android:layout_alignBottom="@id/event_time_input_label"
         android:layout_alignTop="@id/event_time_input_label"
         android:hint="@string/event_time_input_hrs"
@@ -211,6 +215,8 @@
     <EditText
         android:id="@+id/event_time_input_min"
         android:hint="@string/event_time_input_min"
+        android:singleLine="true"
+        android:imeOptions="actionNext"
         android:textSize="15sp"
         android:layout_alignBottom="@id/event_time_input_label"
         android:layout_alignTop="@id/event_time_input_label"
