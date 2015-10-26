@@ -60,16 +60,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         else {
-            Log.d("myd","HOME ACTIVITY onCreate => temp courses object created");
-            Calendar tempCalendar = Calendar.getInstance();
-            tempCalendar.add(Calendar.MINUTE, 20);
-            CourseEvent testE = new CourseEvent(0, tempCalendar.get(Calendar.HOUR_OF_DAY), tempCalendar.get(Calendar.MINUTE));
-            testE.setReminder("Drama");
-            ArrayList<CourseEvent> testEL = new ArrayList<>();
-            testEL.add(testE);
-            Course test = new Course("Drama", "Heath Ledger", 100, 89 , testEL);
+            Log.d("myd","HOME ACTIVITY onCreate => empty file created for first time");
             courses = new ArrayList<Course>();
-            courses.add(test);
+            try {
+                FileOutputStream fout = openFileOutput("courses.ser", Context.MODE_PRIVATE);
+                ObjectOutputStream oos = new ObjectOutputStream(fout);
+                oos.writeObject(courses);
+                fout.close();
+            }
+            catch(Exception e) {
+                Log.d("myd","HOME ACTIVITY onCreate => " + e.toString());
+            }
         }
         courses_view = (GridView)findViewById(R.id.courses_window);
         courses_adapter = new CoursesViewAdapter(this, R.layout.courses_grid_view, courses);
