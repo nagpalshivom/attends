@@ -1,0 +1,268 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.phoenix.attends.AddActivity">
+
+    <!--<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </RelativeLayout>
+
+    </ScrollView>-->
+
+    <TextView
+        android:layout_alignParentLeft="true"
+        android:id="@+id/course_name_label"
+        android:padding="5dp"
+        android:text="@string/course_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/course_name_input"
+        android:padding="5dp"
+        android:layout_alignTop="@id/course_name_label"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/course_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/course_name_label" />
+
+    <TextView
+        android:layout_alignParentLeft="true"
+        android:padding="5dp"
+        android:layout_alignRight="@id/course_name_label"
+        android:layout_below="@id/course_name_label"
+        android:id="@+id/instructor_name_label"
+        android:text="@string/instructor_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/instructor_name_input"
+        android:padding="5dp"
+        android:layout_alignBottom="@id/instructor_name_label"
+        android:layout_alignTop="@id/instructor_name_label"
+        android:layout_alignLeft="@id/course_name_input"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/course_name_input"
+        android:layout_toRightOf="@id/instructor_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lecture_scheduled_count_label"
+        android:padding="5dp"
+        android:text="@string/lecture_scheduled_count"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@id/instructor_name_label"
+        android:layout_below="@id/instructor_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/lecture_scheduled_count_input"
+        android:hint="Till Date"
+        android:padding="5dp"
+        android:layout_below="@id/instructor_name_input"
+        android:layout_alignLeft="@id/instructor_name_input"
+        android:layout_toRightOf="@id/lecture_scheduled_count_label"
+        android:layout_alignBottom="@id/lecture_scheduled_count_label"
+        android:layout_alignTop="@id/lecture_scheduled_count_label"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lecture_attended_count_label"
+        android:padding="5dp"
+        android:text="@string/lecture_attended_count"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@id/lecture_scheduled_count_label"
+        android:layout_below="@id/lecture_scheduled_count_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:hint="Till Date"
+        android:id="@+id/lecture_attended_count_input"
+        android:padding="5dp"
+        android:layout_below="@id/lecture_scheduled_count_input"
+        android:layout_alignLeft="@id/lecture_scheduled_count_input"
+        android:layout_toRightOf="@id/lecture_attended_count_label"
+        android:layout_alignBottom="@id/lecture_attended_count_label"
+        android:layout_alignTop="@id/lecture_attended_count_label"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/separator1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/Blue"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/lecture_attended_count_label"
+        android:layout_height="3dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/event_day_label"
+        android:textSize="15sp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/separator1"
+        android:text="@string/event_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <HorizontalScrollView
+        android:id="@+id/event_days"
+        android:nestedScrollingEnabled="true"
+        android:scrollbarThumbHorizontal="@drawable/custom_scroll_schedule"
+        android:layout_below="@id/event_day_label"
+        android:layout_width="match_parent"
+        android:scrollbars="horizontal"
+        android:fadeScrollbars="false"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/event_day_0"
+                android:textSize="13sp"
+                android:text="@string/event_day_0"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/event_day_1"
+                android:textSize="13sp"
+                android:text="@string/event_day_1"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/event_day_2"
+                android:textSize="13sp"
+                android:text="@string/event_day_2"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/event_day_3"
+                android:textSize="13sp"
+                android:text="@string/event_day_3"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/event_day_4"
+                android:textSize="13sp"
+                android:text="@string/event_day_4"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/event_day_5"
+                android:textSize="13sp"
+                android:text="@string/event_day_5"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/event_day_6"
+                android:textSize="13sp"
+                android:text="@string/event_day_6"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/event_time_input_label"
+        android:padding="20dp"
+        android:text="@string/event_time_input"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/event_days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/event_time_input_hrs"
+        android:textSize="15sp"
+        android:layout_alignBottom="@id/event_time_input_label"
+        android:layout_alignTop="@id/event_time_input_label"
+        android:hint="@string/event_time_input_hrs"
+        android:layout_toRightOf="@id/event_time_input_label"
+        android:layout_below="@id/event_days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/event_time_input_min"
+        android:hint="@string/event_time_input_min"
+        android:textSize="15sp"
+        android:layout_alignBottom="@id/event_time_input_label"
+        android:layout_alignTop="@id/event_time_input_label"
+        android:layout_below="@id/event_days"
+        android:layout_toRightOf="@id/event_time_input_hrs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/add_event"
+        android:layout_below="@id/event_time_input_label"
+        android:text="@string/add_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/separator2"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/Blue"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/add_event"
+        android:layout_height="3dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/added_events_label"
+        android:text="@string/added_events"
+        android:textSize="17sp"
+        android:padding="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/separator2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/added_events"
+        android:layout_below="@id/added_events_label"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:nestedScrollingEnabled="true"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:scrollbarThumbVertical="@drawable/custom_scroll_schedule"
+        android:layout_height="200dp" />
+
+</RelativeLayout>

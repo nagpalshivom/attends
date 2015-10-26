@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".HomeActivity">
+
+    <item
+        android:id="@+id/add_course"
+        android:orderInCategory="99"
+        app:showAsAction="ifRoom"
+        android:title="@string/add_course" />
+
+    <item
+        android:id="@+id/see_schedule"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:title="@string/see_scheduled" />
+
+</menu>
