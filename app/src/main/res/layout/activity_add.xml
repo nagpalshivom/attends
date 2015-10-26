@@ -8,18 +8,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.phoenix.attends.AddActivity">
 
-    <!--<ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </RelativeLayout>
-
-    </ScrollView>-->
-
     <TextView
         android:layout_alignParentLeft="true"
         android:id="@+id/course_name_label"
@@ -31,6 +19,8 @@
     <EditText
         android:id="@+id/course_name_input"
         android:padding="5dp"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
         android:layout_alignTop="@id/course_name_label"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/course_name_label"
@@ -53,6 +43,8 @@
         android:padding="5dp"
         android:layout_alignBottom="@id/instructor_name_label"
         android:layout_alignTop="@id/instructor_name_label"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
         android:layout_alignLeft="@id/course_name_input"
         android:layout_alignParentRight="true"
         android:layout_below="@id/course_name_input"
