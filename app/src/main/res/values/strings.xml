@@ -44,5 +44,16 @@
     <string name="header_instructor_name"><u><b>Instructor</b></u></string>
     <string name="header_lecture_ratio"><u><b>Attendance</b></u></string>
     <string name="header_scheduled_time"><u><b>Scheduled At</b></u></string>
+    <string name="day_select_label">Click to Change   ----->   </string>
+
+    <string-array name="event_days_select">
+        <item><u>Monday</u></item>
+        <item><u>Tuesday</u></item>
+        <item><u>Wednesday</u></item>
+        <item><u>Thursday</u></item>
+        <item><u>Friday</u></item>
+        <item><u>Saturday</u></item>
+        <item><u>Sunday</u></item>
+    </string-array>
 
 </resources>

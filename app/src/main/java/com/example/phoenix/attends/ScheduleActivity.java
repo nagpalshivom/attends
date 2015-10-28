@@ -15,10 +15,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -94,44 +96,26 @@ public class ScheduleActivity extends AppCompatActivity {
         scheduleAdapter = new seeScheduleAdapter(this, R.layout.schedule_list_element, daySchedule);
         scheduleView = (ListView)findViewById(R.id.schedule_list);
         scheduleView.setAdapter(scheduleAdapter);
-        final RadioGroup daySelect = (RadioGroup)findViewById(R.id.day_select);
-        RadioButton mondaySelect = (RadioButton)findViewById(R.id.mon_schedule);
-        mondaySelect.setChecked(true);
-        daySelect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        Spinner daySelect = (Spinner)findViewById(R.id.day_select);
+        ArrayAdapter<CharSequence> daySelectAdapter = ArrayAdapter.createFromResource(this, R.array.event_days_select, R.layout.spinner_schedule);
+        daySelectAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        daySelect.setAdapter(daySelectAdapter);
+        daySelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 daySchedule.clear();
-                switch (checkedId) {
-                    case R.id.mon_schedule:
-                        Log.d("myd", "SCHEDULED ACTIVITY onCreate => monday selected with " + String.valueOf(schedule.get(0).size()) + " elements");
-                        daySchedule.addAll(schedule.get(0));
-                        break;
-                    case R.id.tue_schedule:
-                        Log.d("myd", "SCHEDULED ACTIVITY onCreate => tuesday selected with " + String.valueOf(schedule.get(1).size()) + " elements");
-                        daySchedule.addAll(schedule.get(1));
-                        break;
-                    case R.id.wed_schedule:
-                        Log.d("myd", "SCHEDULED ACTIVITY onCreate => wednesday selected with " + String.valueOf(schedule.get(2).size()) + " elements");
-                        daySchedule.addAll(schedule.get(2));
-                        break;
-                    case R.id.thu_schedule:
-                        Log.d("myd", "SCHEDULED ACTIVITY onCreate => thursday selected with " + String.valueOf(schedule.get(3).size()) + " elements");
-                        daySchedule.addAll(schedule.get(3));
-                        break;
-                    case R.id.fri_schedule:
-                        Log.d("myd", "SCHEDULED ACTIVITY onCreate => friday selected with " + String.valueOf(schedule.get(4).size()) + " elements");
-                        daySchedule.addAll(schedule.get(4));
-                        break;
-                    case R.id.sat_schedule:
-                        Log.d("myd", "SCHEDULED ACTIVITY onCreate => saturday selected with " + String.valueOf(schedule.get(5).size()) + " elements");
-                        daySchedule.addAll(schedule.get(5));
-                        break;
-                    case R.id.sun_schedule:
-                        Log.d("myd", "SCHEDULED ACTIVITY onCreate => sunday selected with " + String.valueOf(schedule.get(6).size()) + " elements");
-                        daySchedule.addAll(schedule.get(6));
-                        break;
-                }
+                Log.d("myd", "SCHEDULED ACTIVITY onCreate => " + position + " selected with " + String.valueOf(schedule.get(position).size()) + " elements");
+                daySchedule.addAll(schedule.get(position));
                 scheduleAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                parent.setSelection(0);
+                /*daySchedule.clear();
+                Log.d("myd", "SCHEDULED ACTIVITY onCreate => 0 selected with " + String.valueOf(schedule.get(0).size()) + " elements");
+                daySchedule.addAll(schedule.get(0));
+                scheduleAdapter.notifyDataSetChanged();*/
             }
         });
     }

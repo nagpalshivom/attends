@@ -22,14 +22,13 @@ import java.util.Calendar;
  */
 public class CourseEvent implements Serializable {
     static Context context;
-    static int nid;
-    int reqCode;
-    int day, hour, minute;
+    int nid, reqCode, day, hour, minute;
 
     CourseEvent(int day, int hour, int minute) {
         this.day = day;
         this.hour = hour;
         this.minute = minute;
+        this.nid = this.reqCode = -1;
         Log.d("myd", "COURSEEVENT CONSTRUCTOR => event created on " + day + " " + hour + " : " + minute);
     }
 
@@ -43,17 +42,19 @@ public class CourseEvent implements Serializable {
 
     public void setReminder(String nameOfCourse) {
         SharedPreferences sharedPref = context.getSharedPreferences("chilka", Context.MODE_PRIVATE);
-        nid = sharedPref.getInt("nid", 0);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        if(nid == -1) {
+            nid = sharedPref.getInt("nid", 0);
+            editor.putInt("nid", nid + 1);
+            editor.commit();
+            Log.d("myd", "COURSEEVENT setReminder => nid incremented to " + String.valueOf(nid + 1));
+        }
         AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra("name", nameOfCourse);
         intent.putExtra("hrs", hour);
         intent.putExtra("min", minute);
         intent.putExtra("nid", nid);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("nid", nid + 1);
-        editor.commit();
-        Log.d("myd", "COURSEEVENT setReminder => nid incremented to " + String.valueOf(nid + 1));
         Calendar firingCal = Calendar.getInstance();
 
         int dow = day + 2;
@@ -73,7 +74,6 @@ public class CourseEvent implements Serializable {
                 if (firingCal.before(Calendar.getInstance())) {
                     Log.d("myd", "COURSEEVENT setReminder => instant reminder called");
                     long[] pattern = {0, 1200, 600, 1200, 600, 1200, 600, 1200, 600, 1200, 600, 1200, 600};
-                    int notificationId = sharedPref.getInt("nid", 0);
                     NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
                     Notification notification = new NotificationCompat.Builder(context)
@@ -87,9 +87,7 @@ public class CourseEvent implements Serializable {
                             .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, HomeActivity.class), 0))
                             .build();
 
-                    notificationManager.notify(notificationId, notification);
-                    editor.putInt("nid", notificationId + 1);
-                    editor.commit();
+                    notificationManager.notify(nid, notification);
                     firingCal.add(Calendar.DATE, 1);
                 }
                 firingCal.add(Calendar.MINUTE, 10);
@@ -103,11 +101,13 @@ public class CourseEvent implements Serializable {
 
         Log.d("myd", "COURSEEVENT setReminder => timeToFire : " + String.valueOf(firingCal.getTimeInMillis()));
         Log.d("myd", "COURSEEVENT setReminder => timeNow : " + String.valueOf(Calendar.getInstance().getTimeInMillis()));
-        reqCode = sharedPref.getInt("reqCode", 0);
+        if(reqCode == -1) {
+            reqCode = sharedPref.getInt("reqCode", 0);
+            editor.putInt("reqCode", reqCode + 1);
+            editor.commit();
+            Log.d("myd", "COURSEEVENT setReminder => request code incremented to " + String.valueOf(reqCode + 1));
+        }
         PendingIntent alarmIntent = PendingIntent.getBroadcast(context, reqCode, intent, 0);
-        editor.putInt("reqCode", reqCode + 1);
-        editor.commit();
-        Log.d("myd", "COURSEEVENT setReminder => request code incremented to " + String.valueOf(reqCode + 1));
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, firingCal.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, alarmIntent);
         Log.d("myd", "COURSEEVENT setReminder => reminder set");
     }

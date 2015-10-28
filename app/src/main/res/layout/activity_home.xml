@@ -8,7 +8,7 @@
 
     <GridView
         android:id="@+id/courses_window"
-        android:numColumns="3"
+        android:numColumns="2"
         android:horizontalSpacing="2dp"
         android:verticalSpacing="2dp"
         android:gravity="center"

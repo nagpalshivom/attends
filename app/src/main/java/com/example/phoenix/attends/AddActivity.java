@@ -199,8 +199,8 @@ public class AddActivity extends AppCompatActivity {
             return 1;
         }
         if(tlsc < 0 || tlac < 0 || tlsc < tlac) {
-            Log.d("myd", "ADD ACTIVITY addCourseHandler => Scheduled time format incorrect.");
-            Toast.makeText(getApplicationContext(), "Scheduled time format incorrect!", Toast.LENGTH_SHORT).show();
+            Log.d("myd", "ADD ACTIVITY addCourseHandler => Scheduled and Attended lectures' format incorrect.");
+            Toast.makeText(getApplicationContext(), "Scheduled and Attended lectures' format incorrect!", Toast.LENGTH_SHORT).show();
             return 1;
         }
 
